@@ -15,10 +15,12 @@
         </header>
         <nav>
             <ul id="menu">
-                <li>Todos</li>
+                <li id="menu-all" class="menu-nav active"><i class="fa-regular fa-circle-check"></i> Todos</li>
+                <li id="menu-category" class="menu-nav"><i class="fa-solid fa-layer-group"></i> Categorias</li>
+                
             </ul>
         </nav>
-        <button id="add-task">+ Add Tarefa</button>
+        <button id="btn-add-task">+ Add Tarefa</button>
     </aside>
 
     <main>
@@ -47,31 +49,69 @@
                     <th class="table-th" id="table-name">Descrição</th>
                     <th >Categoria</th>
                     <th >Data</th>
-                    <th  id="table-action">Ações</th>
+                    <th id="table-action">Ações</th>
                 </tr>
                 <tr class="data-task">
-                    <td class="task">
+                    <td class="task-description">
                         <h4>Titulo Descrição</h4>
                         <p>Observações sobre a tarefa</p>
                     </td>
-                    <td>Categoria</td>
-                    <td>12/12/12</td>
-                    <td>Icone</td>
-                </tr>
-                 <tr class="data-task">
-                    <td class="task">
-                        <h4>Titulo Descrição</h4>
-                        <p>Observações sobre a tarefa</p>
+                    <td>
+                        <p id="task-category">Categoria</p>
                     </td>
-                    <td>Categoria</td>
-                    <td>12/12/12</td>
-                    <td>Icone</td>
+                    <td><p id="task-date">12/12/12</p></td>
+                    <td class="task-icons">
+                        <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
+                        <i id="task-edit" class="task-icon fa-solid fa-pen"></i>
+                        <i id="task-delete" class="task-icon fa-solid fa-trash"></i>
+                    </td>
                 </tr>
+                 
                 
             </table>
         </div>
         </div>
-        
+       
     </main>
+    <div id="container-modal" class="container-modal">
+            <div id="modal-task">
+                <header>
+                    <div>
+                        <h2>Inserir Tarefas</h2>
+                        <p>Aprimore suas intenções e detalhes.</p>
+                    </div>
+                    <div>
+                        <i id="modal-button-esc" class="fa-solid fa-x"></i>
+                    </div>               
+                </header>
+                <div id="container-modal-form">
+                    <form>
+                        <div id="modal-box-description">
+                            <p class="description-modal">DESCRIÇÃO DA TAREFA</p>
+                            <input id="name" placeholder="Descrição" type="text">
+                        </div>
+                        <div>
+                            <p class="description-modal">CATEGORIA</p>
+                            <ul id="modal-select-category">
+                                <li class="category-list active">Pessoal</li>
+                                <li class="category-list">Trabalho</li>
+                            </ul>
+                        </div>
+                        <div id="container-details">
+                            <p class="description-modal">DESCRIÇÃO</p>
+                            <textarea name="details" id="details-form"></textarea>
+                        </div>
+                        <div id="modal-button-task">
+                            <button class="button-modal" id="button-cancel-task">Cancelar</button>
+                            <button class="button-modal" id="button-save-task">Salvar Tarefa</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+            
+    </div>
+    
+    <script src="main.js"></script>
 </body>
 </html>

@@ -4,11 +4,14 @@
     --inverted: #302F39;  
     --outlined: #F0ECF9;
     --tertiary: #0D9488;
+    --tertiary-strong: #00524B;
     --neutral: #777681;
     --button-delete: #BA1A1A;
     --white: #ffffff;
     --background-color: #FBF7FE;
     --background-secondary: ##F4F2F9;
+    --secondary-outline: #F5F2FF;
+    --background-tertiary: #E4E1EE;
 }
 
 *{
@@ -20,9 +23,14 @@
 
 body{
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
+    position: relative;
+}
+
+li{
+    list-style: none;
 }
 
 aside{
@@ -50,13 +58,23 @@ aside nav{
 }
 
 aside nav li{
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    list-style-type: none;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+aside nav li.active{
     background-color: var(--white);
     cursor: pointer;
     list-style-type: none;
-    padding: 16px 20px;
+    padding: 13px 20px;
     border-radius: 8px;
     color: var(--primary-color);
     font-weight: 600;
+    margin-bottom: 4px;
 }
 aside nav li:hover{
     opacity: 0.8;
@@ -141,6 +159,7 @@ main #table-tasks{
     margin-top: 50px;
     width: 100%;
     height: 400px;
+    overflow: hidden;
     border-radius: 15px;
     box-shadow: 1px 1px 10px #69696926;
     background-color: var(--white);
@@ -156,7 +175,7 @@ main #table-header{
     background-color: var(--secondary-color)
 }
 main th{
-    padding: 10px 15px;
+    padding: 15px 15px;
 }
 main .table-tr:hover{
     background-color: var(--outlined);
@@ -167,13 +186,198 @@ main #table-name{
 }
 main #table-action{
     border-radius: 0 10px 0 0;
+    text-align: center;
 }
 
-main .task{
+main .task-description{
     padding: 13px 25px;
     min-height: 60px;
     cursor: pointer;
 }
 main .data-task:hover{
     background-color: var(--outlined);
+}
+main #task-category{
+    background-color: var(--background-tertiary);
+    padding: 3px 4px;
+    width: 100px;
+    border-radius: 50px;
+    text-align: center;
+}
+main #task-category:hover{
+    opacity: 0.8;
+}
+main .task-icons{
+    text-align: center;
+    cursor: pointer;
+}
+main .task-icon{
+    font-size: 17px;
+    color: var(--neutral);
+}
+main .task-icon:hover{
+    opacity: 0.8;
+}
+
+main #task-check:hover{
+    color: var(--tertiary-strong);
+}
+main #task-edit:hover{
+    color: black;
+}
+main #task-delete:hover{
+    color: var(--button-delete);
+}
+
+.container-modal{
+    display: none;
+}
+.container-modal.active{
+    background-color: #5e5b7fb9;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-modal.active #modal-task{
+    background-color: var(--white);
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #7776817d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+}
+
+.container-modal.active #modal-task header{
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+.container-modal.active #modal-task header p{
+    font-weight: lighter;
+}
+.container-modal.active #modal-button-esc{
+    color: var(--neutral);
+    cursor: pointer;
+}
+.container-modal.active #modal-task #container-modal-form{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.container-modal.active #container-modal-form form{
+    padding: 30px 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.container-modal.active #container-modal-form form div{
+    margin-top: 10px;
+}
+
+.container-modal.active #container-modal-form form .description-modal{
+    color: var(--neutral);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.container-modal.active #modal-box-description {
+    display: flex;
+    flex-direction: column;
+    
+}
+.container-modal.active #modal-box-description input{
+    margin-top: 8px;
+    padding: 8px 8px;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--background-tertiary);
+}
+.container-modal.active #modal-box-description input:focus{
+    outline: none;
+}
+
+.container-modal.active #modal-select-category{
+    display: flex;
+    margin-top: 8px;
+}
+.container-modal.active #modal-select-category .category-list{
+    margin-left: 5px;
+    padding: 3px 12px;
+    background-color: var(--background-tertiary);
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.container-modal.active #modal-select-category .category-list.active{
+    background-color: var(--secondary-outline);
+    border: 2px solid var(--primary-color);
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.container-modal.active #container-details{
+    width: 100%;
+}
+
+.container-modal.active #details-form{
+    margin-top: 8px;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100px;
+    background-color: var(--background-tertiary);
+    border: none;
+    border-radius: 7px;
+    height: 100px;
+    padding: 8px 10px;
+    resize: none;
+}
+.container-modal.active #details-form:focus{
+    outline: none;
+}
+
+.container-modal.active #modal-button-task{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-modal.active .button-modal{
+    padding: 16px 20px;
+    border-radius: 7px;
+    border: none;
+    background: var(--background-tertiary);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.container-modal.active #button-cancel-task{
+    width: 40%;
+}
+.container-modal.active #button-save-task{
+    width: 58%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 1px 1px 4px var(--primary-color);
+}
+.container-modal.active #button-save-task:hover{
+    transform: scale(1.02);
+    transition: all ease-in-out 0.3s;
 }
