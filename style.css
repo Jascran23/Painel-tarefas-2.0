@@ -35,6 +35,7 @@ aside{
     flex-direction: column;
     justify-content: space-between;
     padding: 30px 15px;
+    padding-left: 20px;
 }
 
 aside #name-project{
@@ -56,6 +57,9 @@ aside nav li{
     border-radius: 8px;
     color: var(--primary-color);
     font-weight: 600;
+}
+aside nav li:hover{
+    opacity: 0.8;
 }
 
 aside button{
@@ -81,7 +85,25 @@ main{
 
 main header{
     width: 100%;
-    padding: 10px 1513x;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+main header #header-icons{
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+    align-items: center;
+}
+main header .header-icon{
+    font-size: 18px;
+    color: var(--inverted);
+    cursor: pointer;
+}
+main header .header-icon:hover{
+    color: var(--primary-color);
+    transition: 0.3s;
 }
 
 main .container{
