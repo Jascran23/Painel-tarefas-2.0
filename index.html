@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/523b4ebef2.js" crossorigin="anonymous"></script>
     <title>MyList</title>
 </head>
 <body>
@@ -23,8 +24,10 @@
     <main>
         <header>
             <div id="search">
-                <div id="icon-search"></div>
-                <input id="input-search" type="text">
+                <div id="icon-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input id="input-search" placeholder="Buscar tarefa ..." type="text">
             </div>
 
             <div id="header-icons">
@@ -33,31 +36,42 @@
                 <div id="icon-perfil" class="header-icon"></div>
             </div>
         </header>
-        <div id="title-my-tasks">
+        <div class="container">
+            <div id="container-title">
             <h1>Minhas Tarefas</h1>
-            <p id="description-title"></p>
+            <p id="description-title">Você tem <span id="span-description-task"> <span id="value-tasks">X</span> tarefas</span> listadas</p>
         </div>
-
         <div id="table-tasks">
             <table>
-                <tr>
-                    <th>Nome Tarefa</th>
-                    <th>Categoria</th>
-                    <th>Data</th>
-                    <th>Ações</th>
+                <tr id="table-header">
+                    <th class="table-th" id="table-name">Descrição</th>
+                    <th >Categoria</th>
+                    <th >Data</th>
+                    <th  id="table-action">Ações</th>
                 </tr>
-                <tr>
-                    <td>Fazer tarefa</td>
-                </tr>
-                <tr>
+                <tr class="data-task">
+                    <td class="task">
+                        <h4>Titulo Descrição</h4>
+                        <p>Observações sobre a tarefa</p>
+                    </td>
+                    <td>Categoria</td>
                     <td>12/12/12</td>
+                    <td>Icone</td>
                 </tr>
-                <tr>
+                 <tr class="data-task">
+                    <td class="task">
+                        <h4>Titulo Descrição</h4>
+                        <p>Observações sobre a tarefa</p>
+                    </td>
+                    <td>Categoria</td>
+                    <td>12/12/12</td>
                     <td>Icone</td>
                 </tr>
                 
             </table>
         </div>
+        </div>
+        
     </main>
 </body>
 </html>
