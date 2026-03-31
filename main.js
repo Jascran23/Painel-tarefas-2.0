@@ -38,10 +38,7 @@ let listCategory = [
 let containerAmountList = document.querySelector("#description-title");
 
 function showAmountTask(){
-    let amount = 0;
-    if(listTasks.length > 0){
         amount = listTasks.length;
-    }
 
     let p = `Você tem <span id="span-description-task"> <span id="value-tasks">${amount} </span>${amount !== 1 ? "tarefas" : "tarefa"}</span> ${amount !== 1 ? "listadas" : "listada"}`
 
