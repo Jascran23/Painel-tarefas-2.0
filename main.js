@@ -17,14 +17,14 @@ function escModalTask(){
 function callModalTask(){
     
     containerModal.classList.toggle('active');
-    pegarValorDaCategoria();
+    
 }
 
 
 
 
-const listTasks = []
-const listCategory = [
+let listTasks = []
+let listCategory = [
     {
         category: 'Pessoal',
         cor: null,
@@ -35,10 +35,25 @@ const listCategory = [
     },
 ]
 
+let containerAmountList = document.querySelector("#description-title");
+
+function showAmountTask(){
+    let amount = 0;
+    if(listTasks.length > 0){
+        amount = listTasks.length;
+    }
+
+    let p = `Você tem <span id="span-description-task"> <span id="value-tasks">${amount} </span>${amount !== 1 ? "tarefas" : "tarefa"}</span> ${amount !== 1 ? "listadas" : "listada"}`
+
+    containerAmountList.innerHTML = p;
+
+}
+
+
 function renderListTask(){
     containerTasks.innerHTML = "";
 
-    listTasks.forEach(list => {
+    listTasks.forEach((list, index) => {
         const tr = document.createElement('tr')
         tr.classList.add('data-task')
         const task = `
@@ -53,15 +68,35 @@ function renderListTask(){
                 <td class="task-icons">
                     <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
                     <i id="task-edit" class="task-icon fa-solid fa-pen"></i>
-                    <i id="task-delete" class="task-icon fa-solid fa-trash"></i>
+                    <i id="task-delete" class="task-icon fa-solid fa-trash" onClick="deleteItemTask(${index})"></i>
                 </td>
                 
         `;
         tr.innerHTML = task;
 
         containerTasks.appendChild(tr)
+         
     })
+    
+    localStorage.setItem('tasks', JSON.stringify(listTasks));
+    
+}
 
+function renderListTaskLocal(){
+    let tasksLocalStorage = localStorage.getItem('tasks');
+    if(tasksLocalStorage){
+        listTasks = JSON.parse(tasksLocalStorage);
+    }
+    
+    renderListTask();
+    showAmountTask();
+}
+
+renderListTaskLocal();
+
+function deleteItemTask(index){
+    listTasks.splice(index,1);
+    renderListTask();
 }
 
 const optionsCategories = document.querySelector('#modal-select-category');
@@ -106,7 +141,7 @@ function pegarValorDaCategoria(){
         })
     })
 }
-
+pegarValorDaCategoria()
 function clearForm(){
     optionCategory = '';
 
@@ -138,9 +173,6 @@ function addTaskList(e){
         return
     }
 
-    
-    console.log(categoria);
-
     const list = {
         title: titleTask.value,
         description: detailsTask.value,
@@ -149,22 +181,11 @@ function addTaskList(e){
     }
 
     listTasks.push(list);
+
+    
     renderListTask();
     callModalTask();
     clearForm();
-    showAmountTask();
 }
 
-const conatinerAmountList = document.querySelector("#description-title");
 
-function showAmountTask(){
-    const amount = listTasks.length;
-
-    const p = `Você tem <span id="span-description-task"> <span id="value-tasks">${amount} </span>${amount !== 1 ? "tarefas" : "tarefa"}</span> ${amount !== 1 ? "listadas" : "listada"}`
-
-    conatinerAmountList.innerHTML = p;
-
-}
-
-showAmountTask();
-renderListTask();
