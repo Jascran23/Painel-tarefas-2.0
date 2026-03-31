@@ -76,8 +76,10 @@ function renderListTask(){
     })
     
     localStorage.setItem('tasks', JSON.stringify(listTasks));
-    showAmountTask();
     
+    console.log(listTasks)
+    console.log(listTasks.length)
+    showAmountTask();
 }
 
 function renderListTaskLocal(){
