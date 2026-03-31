@@ -24,6 +24,7 @@
     </aside>
 
     <main>
+        <!-- menu barra -->
         <header>
             <div id="search">
                 <div id="icon-search">
@@ -38,36 +39,26 @@
                 <div id="icon-user" class="header-icon"><i class="fa-solid fa-user"></i></div>
             </div>
         </header>
+
+        <!-- conteudo -->
         <div class="container">
             <div id="container-title">
             <h1>Minhas Tarefas</h1>
-            <p id="description-title">Você tem <span id="span-description-task"> <span id="value-tasks">X</span> tarefas</span> listadas</p>
-        </div>
+            <p id="description-title"></p>
+            </div>
         <div id="table-tasks">
             <table>
-                <tr id="table-header">
-                    <th class="table-th" id="table-name">Descrição</th>
-                    <th >Categoria</th>
-                    <th >Data</th>
-                    <th id="table-action">Ações</th>
-                </tr>
-                <tr class="data-task">
-                    <td class="task-description">
-                        <h4>Titulo Descrição</h4>
-                        <p>Observações sobre a tarefa</p>
-                    </td>
-                    <td>
-                        <p id="task-category">Categoria</p>
-                    </td>
-                    <td><p id="task-date">12/12/12</p></td>
-                    <td class="task-icons">
-                        <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
-                        <i id="task-edit" class="task-icon fa-solid fa-pen"></i>
-                        <i id="task-delete" class="task-icon fa-solid fa-trash"></i>
-                    </td>
-                </tr>
-                 
+                <thead>
+                    <tr id="table-header">
+                        <th class="table-th" id="table-name">Descrição</th>
+                        <th >Categoria</th>
+                        <th >Data</th>
+                        <th id="table-action">Ações</th>
+                    </tr>
+                </thead>
+              <tbody id="container-tasks">
                 
+              </tbody>
             </table>
         </div>
         </div>
@@ -88,25 +79,33 @@
                     <form>
                         <div id="modal-box-description">
                             <p class="description-modal">DESCRIÇÃO DA TAREFA</p>
-                            <input id="name" placeholder="Descrição" type="text">
+                            <input id="title-task-modal" placeholder="Descrição" type="text" required>
+                            <p class="error"></p>
                         </div>
                         <div>
                             <p class="description-modal">CATEGORIA</p>
+                            <!-- <select name="category" id="select-category-modal">
+                            <option value="pessoal" >Pessoal</option>
+                            <option value="trabalho">Trabalho</option>
+                            
+                            </select> -->
+                            
                             <ul id="modal-select-category">
-                                <li class="category-list active">Pessoal</li>
-                                <li class="category-list">Trabalho</li>
+                                
                             </ul>
+                            <p class="error"></p>
                         </div>
                         <div id="container-details">
                             <p class="description-modal">DESCRIÇÃO</p>
-                            <textarea name="details" id="details-form"></textarea>
+                            <textarea name="details" id="details-form" required></textarea>
+                            <p class="error"></p>
                         </div>
                         <div id="modal-button-task">
                             <button class="button-modal" id="button-cancel-task">Cancelar</button>
                             <button class="button-modal" id="button-save-task">Salvar Tarefa</button>
                         </div>
-                        
                     </form>
+                    
                 </div>
             </div>
             

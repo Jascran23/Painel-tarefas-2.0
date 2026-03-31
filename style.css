@@ -317,6 +317,7 @@ main #task-delete:hover{
 .container-modal.active #modal-select-category{
     display: flex;
     margin-top: 8px;
+    padding: 3px 0;
 }
 .container-modal.active #modal-select-category .category-list{
     margin-left: 5px;
@@ -380,4 +381,10 @@ main #task-delete:hover{
 .container-modal.active #button-save-task:hover{
     transform: scale(1.02);
     transition: all ease-in-out 0.3s;
+}
+
+.container-modal.active .error{
+    font-size: 12px;
+    font-weight: 600;
+    color: #BA1A1A;
 }
