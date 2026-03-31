@@ -184,6 +184,7 @@ function addTaskList(e){
 
     
     renderListTask();
+    showAmountTask();
     callModalTask();
     clearForm();
 }
