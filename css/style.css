@@ -377,13 +377,13 @@ main #task-delete:hover{
 .container-modal.active #button-cancel-task{
     width: 40%;
 }
-.container-modal.active #button-save-task{
+.container-modal.active #button-save-task, #button-edit-task{
     width: 58%;
     background-color: var(--primary-color);
     color: var(--white);
     box-shadow: 1px 1px 4px var(--primary-color);
 }
-.container-modal.active #button-save-task:hover{
+.container-modal.active #button-save-task:hover, #button-edit-task:hover{
     transform: scale(1.02);
     transition: all ease-in-out 0.3s;
 }

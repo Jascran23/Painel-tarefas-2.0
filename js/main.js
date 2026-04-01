@@ -6,6 +6,7 @@ const buttonModalCancel = document.querySelector('#button-cancel-task');
 const buttonModalSave = document.querySelector('#button-save-task');
 const buttonModalEdit = document.querySelector('#button-edit-task');
 const containerTasks = document.querySelector('#container-tasks');
+const textTitleModal = document.querySelector('#text-title-modal');
 //#endregion
 
 //#region CHAMAR MODAL E FECHAR MODAL
@@ -24,12 +25,14 @@ function escModalTask(){
 }
 function callModalTask(){   
    containerModal.classList.toggle('active'); 
+   trocarBotaoEditarPorSalvar();
 }
 function trocarBotaoEditarPorSalvar(){
     const save = buttonModalSave.classList.value.includes('none');
     if(save){
         buttonModalSave.classList.remove('none');
         buttonModalEdit.classList.add('none');
+        textTitleModal.textContent = 'Inserir Tarefas'
     }
 }
 function trocarBotaoSalvarPorEditar(){
@@ -37,6 +40,7 @@ function trocarBotaoSalvarPorEditar(){
     if(edit){
         buttonModalSave.classList.add('none');
         buttonModalEdit.classList.remove('none');
+        textTitleModal.textContent = 'Editar Tarefas'
     }
 }
 //#endregion
@@ -89,7 +93,7 @@ function renderListTask(){
                 <td><p id="task-date">${list.date ?? "Sem registro"}</p></td>
                 <td class="task-icons">
                     <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
-                    <i id="task-edit" onClick="callModalItemTask${index}" class="task-icon fa-solid fa-pen"></i>
+                    <i id="task-edit" onClick="callModalItemTask(${index})" class="task-icon fa-solid fa-pen"></i>
                     <i id="task-delete" class="task-icon fa-solid fa-trash" onClick="deleteItemTask(${index})"></i>
                 </td>
                 
@@ -218,8 +222,9 @@ function deleteItemTask(index){
     renderListTask();
 }
 
-function callModalItemTask(index){
-
+function callModalItemTask(){
+    containerModal.classList.toggle('active');
+    trocarBotaoSalvarPorEditar();
 }
 
 function editItemTask(index){
