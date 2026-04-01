@@ -159,10 +159,13 @@ main #table-tasks{
     margin-top: 50px;
     width: 100%;
     height: 400px;
-    overflow: hidden;
+    overflow: scroll;
     border-radius: 15px;
     box-shadow: 1px 1px 10px #69696926;
     background-color: var(--white);
+}
+main #table-tasks::-webkit-scrollbar{
+    display: none;
 }
 main table{
     width: 100%;
@@ -172,7 +175,8 @@ main table{
 main #table-header{
     width: 100%;
     text-align: left;
-    background-color: var(--secondary-color)
+    background-color: var(--secondary-color);
+    
 }
 main th{
     padding: 15px 15px;
