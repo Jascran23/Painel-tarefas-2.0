@@ -4,8 +4,8 @@ const containerModal = document.querySelector('#container-modal');
 const buttonModalEsc = document.querySelector('#modal-button-esc');
 const buttonModalCancel = document.querySelector('#button-cancel-task');
 const buttonModalSave = document.querySelector('#button-save-task');
+const buttonModalEdit = document.querySelector('#button-edit-task');
 const containerTasks = document.querySelector('#container-tasks');
-
 //#endregion
 
 //#region CHAMAR MODAL E FECHAR MODAL
@@ -89,7 +89,7 @@ function renderListTask(){
                 <td><p id="task-date">${list.date ?? "Sem registro"}</p></td>
                 <td class="task-icons">
                     <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
-                    <i id="task-edit" class="task-icon fa-solid fa-pen"></i>
+                    <i id="task-edit" onClick="callModalItemTask${index}" class="task-icon fa-solid fa-pen"></i>
                     <i id="task-delete" class="task-icon fa-solid fa-trash" onClick="deleteItemTask(${index})"></i>
                 </td>
                 
@@ -218,6 +218,20 @@ function deleteItemTask(index){
     renderListTask();
 }
 
-function editItemTask(index){
+function callModalItemTask(index){
 
 }
+
+function editItemTask(index){
+      // listTasks[index].title = title;
+    // listTasks[index].description = detailsTask;
+    // listTasks[index].category = categoria;
+    // listTasks[index].date = null;
+
+    listTasks[index].title = 'title';
+    listTasks[index].description = 'detailsTask';
+    listTasks[index].category = 'categoria';
+    listTasks[index].date = null;
+    renderListTask();
+}
+
