@@ -1,3 +1,4 @@
+//#region BUSCA DE TAGS NO HTML
 const addTask = document.getElementById('btn-add-task');
 const containerModal = document.querySelector('#container-modal');
 const buttonModalEsc = document.querySelector('#modal-button-esc');
@@ -5,25 +6,44 @@ const buttonModalCancel = document.querySelector('#button-cancel-task');
 const buttonModalSave = document.querySelector('#button-save-task');
 const containerTasks = document.querySelector('#container-tasks');
 
+//#endregion
+
+//#region CHAMAR MODAL E FECHAR MODAL
 addTask.addEventListener('click', callModalTask);
 buttonModalEsc.addEventListener('click', escModalTask);
 buttonModalCancel.addEventListener('click', escModalTask)
+//#endregion
+
+
 buttonModalSave.addEventListener('click', addTaskList);
 
+
+//#region CHAMAR E FECHAR MODAL
 function escModalTask(){  
-    containerModal.classList.toggle('active');
+   containerModal.classList.toggle('active');
 }
-
-function callModalTask(){
-    
-    containerModal.classList.toggle('active');
-    
+function callModalTask(){   
+   containerModal.classList.toggle('active'); 
 }
+function trocarBotaoEditarPorSalvar(){
+    const save = buttonModalSave.classList.value.includes('none');
+    if(save){
+        buttonModalSave.classList.remove('none');
+        buttonModalEdit.classList.add('none');
+    }
+}
+function trocarBotaoSalvarPorEditar(){
+    const edit = buttonModalEdit.classList.value.includes('none');
+    if(edit){
+        buttonModalSave.classList.add('none');
+        buttonModalEdit.classList.remove('none');
+    }
+}
+//#endregion
 
-
-
-
-let listTasks = []
+//#region LISTAS DE TAREFAS
+let listasksDone = [];
+let listTasks = [];
 let listCategory = [
     {
         category: 'Pessoal',
@@ -33,9 +53,13 @@ let listCategory = [
         category: 'Trabalho',
         cor: null,
     },
-]
+];
+//#endregion
+
+// ATUALIZAR QUANTIDADE DE TAREFAS PENDENTES
 
 let containerAmountList = document.querySelector("#description-title");
+const optionsCategories = document.querySelector('#modal-select-category');
 
 function showAmountTask(){
     amount = listTasks.length;
@@ -46,6 +70,7 @@ function showAmountTask(){
 
 }
 
+// RENDERIZAÇÃO
 
 function renderListTask(){
     containerTasks.innerHTML = "";
@@ -94,14 +119,6 @@ function renderListTaskLocal(){
 
 renderListTaskLocal();
 
-function deleteItemTask(index){
-    listTasks.splice(index,1);
-    renderListTask();
-}
-
-const optionsCategories = document.querySelector('#modal-select-category');
-
-
 function renderCategories(){
     optionsCategories.innerHTML = '';
 
@@ -128,6 +145,23 @@ const selectCategory = document.querySelectorAll('.category-list');
 
 let optionCategory = '';
 
+
+const textError = document.querySelectorAll('.error');
+function mensageErrorForm(){
+    textError.forEach(text => {
+        text.innerText = 'Precisa preencher os campos'
+        setTimeout(() => {
+            text.innerText = ''    
+        }, 2000);
+        
+    })
+}
+
+
+
+
+// CRUD
+
 function pegarValorDaCategoria(){    
     selectCategory.forEach(select => {  
         select.addEventListener('click', option => {
@@ -141,7 +175,8 @@ function pegarValorDaCategoria(){
         })
     })
 }
-pegarValorDaCategoria()
+pegarValorDaCategoria();
+
 function clearForm(){
     optionCategory = '';
 
@@ -150,17 +185,6 @@ function clearForm(){
     })
     titleTask.value = '';
     detailsTask.value = '';
-}
-
-const textError = document.querySelectorAll('.error');
-function mensageErrorForm(){
-    textError.forEach(text => {
-        text.innerText = 'Precisa preencher os campos'
-        setTimeout(() => {
-            text.innerText = ''    
-        }, 2000);
-        
-    })
 }
 
 function addTaskList(e){
@@ -189,4 +213,11 @@ function addTaskList(e){
     clearForm();
 }
 
+function deleteItemTask(index){
+    listTasks.splice(index,1);
+    renderListTask();
+}
 
+function editItemTask(index){
+
+}
