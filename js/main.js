@@ -92,7 +92,7 @@ function renderListTask(){
                 </td>
                 <td><p id="task-date">${list.date ?? "Sem registro"}</p></td>
                 <td class="task-icons">
-                    <i id="task-check" class="task-icon fa-solid fa-circle-check"></i>
+                    <i onClick="deleteItemTask(${index})" id="task-check" class="task-icon fa-solid fa-circle-check"></i>
                     <i id="task-edit" onClick="callModalItemTask(${index})" class="task-icon fa-solid fa-pen"></i>
                     <i id="task-delete" class="task-icon fa-solid fa-trash" onClick="deleteItemTask(${index})"></i>
                 </td>
@@ -106,8 +106,6 @@ function renderListTask(){
     
     localStorage.setItem('tasks', JSON.stringify(listTasks));
     
-    console.log(listTasks)
-    console.log(listTasks.length)
     showAmountTask();
 }
 
@@ -143,7 +141,6 @@ renderCategories()
 const titleTask = document.querySelector('#title-task-modal');
 const detailsTask = document.querySelector('#details-form');
 const qtdTasks = document.querySelector('#value-tasks');
-
 
 const selectCategory = document.querySelectorAll('.category-list');
 
@@ -222,9 +219,27 @@ function deleteItemTask(index){
     renderListTask();
 }
 
-function callModalItemTask(){
+function callModalItemTask(index){
+
     containerModal.classList.toggle('active');
     trocarBotaoSalvarPorEditar();
+
+    // COLOCAR OS VALORES DA TAREFA SELECIONADA
+    console.log(listTasks[index]);
+    titleTask.value = listTasks[index].title
+    detailsTask.value = listTasks[index].description
+    optionCategory = listTasks[index].category
+    selectCategory.forEach(item => {
+        console.log(item.innerText)
+        if(listTasks[index].category === item.innerText){
+            item.classList.add('active')
+        }
+    })
+
+    buttonModalEdit.addEventListener('click', () => {
+        editItemTask(index);
+    });
+    
 }
 
 function editItemTask(index){
@@ -233,9 +248,14 @@ function editItemTask(index){
     // listTasks[index].category = categoria;
     // listTasks[index].date = null;
 
-    listTasks[index].title = 'title';
-    listTasks[index].description = 'detailsTask';
-    listTasks[index].category = 'categoria';
+    listTasks[index].title = titleTask.value;
+    listTasks[index].description = detailsTask.value;
+    console.log(optionCategory)
+    listTasks[index].category = optionCategory;
+
+    optionCategory = '';
+    console.log(optionCategory)
+
     listTasks[index].date = null;
     renderListTask();
 }
