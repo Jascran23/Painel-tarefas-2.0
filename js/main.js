@@ -214,8 +214,6 @@ function addTaskList(e){
     clearForm();
 }
 
-
-
 function deleteItemTask(index){
     const boxTask = document.querySelectorAll('.data-task');
 
@@ -227,8 +225,6 @@ function deleteItemTask(index){
     }, 700)
     
 }
-
-
 
 function callModalItemTask(index){
 
