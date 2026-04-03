@@ -214,10 +214,21 @@ function addTaskList(e){
     clearForm();
 }
 
+
+
 function deleteItemTask(index){
-    listTasks.splice(index,1);
-    renderListTask();
+    const boxTask = document.querySelectorAll('.data-task');
+
+    boxTask[index].classList.add('animate__flipOutX')
+    
+    setTimeout(() => {      
+     listTasks.splice(index,1);
+     renderListTask();
+    }, 700)
+    
 }
+
+
 
 function callModalItemTask(index){
 

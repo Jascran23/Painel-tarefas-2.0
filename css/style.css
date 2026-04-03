@@ -200,7 +200,7 @@ main .task-description{
     cursor: pointer;
 }
 main .data-task:hover{
-    background-color: var(--outlined);
+    background-color: var(--background-color);
 }
 main #task-category{
     background-color: var(--background-tertiary);
@@ -398,4 +398,3 @@ button.none{
     display: none;
 }
 
-/* animate__flipOutX */
